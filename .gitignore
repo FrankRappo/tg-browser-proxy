@@ -12,3 +12,5 @@ netlog*.json
 *.tmp
 pac_b64.txt
 evidence/
+research_yandex_pac/agent_launch/
+research_yandex_pac/TASK-VM121.md
