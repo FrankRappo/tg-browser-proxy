@@ -1,0 +1,10 @@
+@echo off
+rem BT-Proxy: Telegram-only SOCKS5 tunnel (plink) - auto-restart loop
+rem Подстановка: __BTPROXY_PASSWORD__ = пароль пользователя btproxy на VPS (см. secrets/)
+rem plink.exe кладётся рядом (C:\BT-Proxy\plink.exe), hostkey фиксирован.
+set "HOSTKEY=SHA256:sOdOKdjo61OP/czasg5y2dVRR5tBA0avP3jWurO+nrw"
+:LOOP
+"C:\BT-Proxy\plink.exe" -batch -hostkey "%HOSTKEY%" -pw "__BTPROXY_PASSWORD__" -N -D 127.0.0.1:1080 btproxy@5.182.86.160 >> "C:\BT-Proxy\tunnel.log" 2>&1
+echo [%date% %time%] plink exited, retry in 5 sec >> "C:\BT-Proxy\tunnel.log"
+timeout /t 5 /nobreak >nul
+goto LOOP
