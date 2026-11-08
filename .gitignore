@@ -11,3 +11,4 @@ secrets/
 netlog*.json
 *.tmp
 pac_b64.txt
+evidence/
