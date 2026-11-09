@@ -47,6 +47,12 @@ function FindProxyForURL(url, host) {
 4. Сеть: во время загрузки телеграма `netstat -ano | findstr ":1080"` показывает
    ESTABLISHED-коннекты chrome.exe.
 
+Для удалённой автоматической проверки используйте `../scripts/remote_proxy_verify.ps1`
+и CDP-скрипт `../scripts/remote_chrome_cdp_verify.ps1`. На Chrome 157 пустой вывод
+`--dump-dom` через PowerShell не является признаком ошибки: сначала смотрите PAC и
+CDP-результат (`cdpTargetUrl`/`cdpTargetTitle`). Подробный разбор ложно-негативной
+проверки — в [INCIDENT-2026-11-09.md](INCIDENT-2026-11-09.md).
+
 ## Откат
 
 ```bat
@@ -59,5 +65,7 @@ reg delete "HKLM\SOFTWARE\Policies\Google\Chrome" /v ProxyPacUrl /f
 - `ProxyMode=pac` (вместо `pac_script`) — политика не работает, браузер молча идёт напрямую.
 - На дефолтном профиле Chrome 136+ флаг `--remote-debugging-port` блокируется — CDP-диагностика
   только на отдельном `--user-data-dir`.
+- `--dump-dom` через удалённый PowerShell может вернуть пустой файл без stderr; для приёмки
+  используйте CDP-проверку отдельного профиля, а не только длину DOM.
 - Если тоннель в момент загрузки страницы перезапускается — страница покажет таймаут;
   F5 через 20–30 секунд (watchdog чинит тоннель за ~30 с).

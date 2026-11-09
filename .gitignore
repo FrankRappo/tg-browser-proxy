@@ -14,3 +14,18 @@ pac_b64.txt
 evidence/
 research_yandex_pac/agent_launch/
 research_yandex_pac/TASK-VM121.md
+research_yandex_pac/TRAFFIC-INTERCEPT-PLAN.md
+
+# Local-only exploratory diagnostics; canonical checks live in remote_proxy_verify.ps1
+# and remote_chrome_cdp_verify.ps1.
+scripts/remote_chrome_debug.ps1
+scripts/remote_chrome_final_verify.ps1
+scripts/remote_chrome_cleanup.ps1
+scripts/remote_chrome_apply_check.ps1
+scripts/remote_proxy_install.ps1
+scripts/remote_proxy_prepare.ps1
+scripts/remote_yandex_install.ps1
+scripts/remote_yandex_inventory.ps1
+scripts/remote_yandex_prepare.ps1
+scripts/remote_yandex_shortcut.ps1
+scripts/remote_yandex_verify.ps1
